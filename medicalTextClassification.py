@@ -60,7 +60,7 @@ for catName,dataCategory in data_categories:
     i = i+1
 print('==================================')
 
-filtered_data_categories = data_categories.filter(lambda x:x.shape[0] > 100)
+filtered_data_categories = data_categories.filter(lambda x:x.shape[0] > 50)
 final_data_categories = filtered_data_categories.groupby(filtered_data_categories['medical_specialty'])
 i=1
 print('============Reduced Categories ======================')
@@ -163,22 +163,16 @@ mask = filtered_data_categories['medical_specialty'] == 'Discharge Summary'
 filtered_data_categories = filtered_data_categories[~mask]
 mask = filtered_data_categories['medical_specialty'] == 'Radiology'
 filtered_data_categories = filtered_data_categories[~mask]
-
-'''
-mask = filtered_data_categories['medical_specialty'] == 'Pediatrics - Neonatal'
-filtered_data_categories = filtered_data_categories[~mask]
-'''
 mask = filtered_data_categories['medical_specialty'] == 'Pain Management'
 filtered_data_categories = filtered_data_categories[~mask]
 mask = filtered_data_categories['medical_specialty'] == 'General Medicine'
 filtered_data_categories = filtered_data_categories[~mask]
-
-
 mask = filtered_data_categories['medical_specialty'] == 'Neurosurgery'
 filtered_data_categories.loc[mask, 'medical_specialty'] = 'Neurology'
 mask = filtered_data_categories['medical_specialty'] == 'Nephrology'
 filtered_data_categories.loc[mask, 'medical_specialty'] = 'Urology'
 final_data_categories = filtered_data_categories.groupby(filtered_data_categories['medical_specialty'])
+
 i=1
 print('============Reduced Categories======================')
 for catName,dataCategory in final_data_categories:
@@ -205,7 +199,7 @@ data['transcription'] = data['transcription'].apply(process_Text)
 data['transcription'] = data['transcription'].apply(lemmatize_text)
 data['transcription'] = data['transcription'].apply(clean_text)
 
-vectorizer = TfidfVectorizer(analyzer='word', stop_words='english',ngram_range=(1,3), max_df=0.75,min_df=5, use_idf=True, smooth_idf=True,sublinear_tf=True, max_features=1000)
+vectorizer = TfidfVectorizer(analyzer='word', stop_words='english',ngram_range=(1,3), max_df=0.75, use_idf=True, smooth_idf=True,sublinear_tf=True, max_features=1000)
 tfIdfMat  = vectorizer.fit_transform(data['transcription'].tolist() )
 feature_names = sorted(vectorizer.get_feature_names_out())
 print(feature_names)
