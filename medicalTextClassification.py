@@ -60,7 +60,7 @@ for catName,dataCategory in data_categories:
     i = i+1
 print('==================================')
 
-filtered_data_categories = data_categories.filter(lambda x:x.shape[0] > 60)
+filtered_data_categories = data_categories.filter(lambda x:x.shape[0] > 100)
 final_data_categories = filtered_data_categories.groupby(filtered_data_categories['medical_specialty'])
 i=1
 print('============Reduced Categories ======================')
