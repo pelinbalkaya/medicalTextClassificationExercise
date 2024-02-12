@@ -10,6 +10,15 @@ nltk.download('wordnet')
 
 
 def get_sentence_word_count(text_list):
+    """_summary_
+
+    Args:
+        text_list (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
+
     sent_count = 0
     word_count = 0
     vocab = {}
