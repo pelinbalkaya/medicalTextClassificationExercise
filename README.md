@@ -25,3 +25,4 @@ Data download link: https://www.kaggle.com/datasets/tboyle10/medicaltranscriptio
 - git checkout [branch name]
 - git checkout -b [new branch name]
 - git merge [branch name]
+- git clone [link]
